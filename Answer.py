@@ -13,7 +13,7 @@ data = read_csv("datas.csv")
 links = data['Links'].tolist()
 more_details=data['Passages'].tolist()
 summarized_data=data['Summary'].tolist()
-# print(links)
+
 def findAssociation(question):
 
   model = SentenceTransformer('sentence-transformers/msmarco-distilbert-base-tas-b')
@@ -55,15 +55,11 @@ def findBooleanAns(doc,question):
   return probability_no<probability_yes
 
 def findAnswer(question,context):
-  # from transformers import pipeline
-  # question_answerer = pipeline("question-answering", model='distilbert-base-uncased-distilled-squad')
-  # model = pipeline("question-answering", model="deepset/roberta-base-squad2")
-  # model= pipeline("question-answering", model='distilbert-base-cased-distilled-squad')
   model= pipeline("question-answering", model='bert-large-uncased-whole-word-masking-finetuned-squad')
   result = model(question=question,context=context)
-  # print(result)
   if(result['score']<0.1):
     return None
+  # to get the selected sentence from the passage
   #   start=result["start"]
   #   end=result['end']
   #   while start >=-1:
@@ -74,17 +70,12 @@ def findAnswer(question,context):
   #     if context[end] == ".":
   #         break
   #     end += 1
-    # print("sentence :")
-    # result["answer"]=(context[start+1:end]).strip()
+  # print("sentence :")
+  # result["answer"]=(context[start+1:end]).strip()
 
   return (result['answer'])
 
-# question="did wheat cost increased?"
+# question="did ratan tata announce reward for rashid khan?"
 # ans=findAssociation(question)
 ans=findAssociation(sys.argv[1])
-# print(sys.argv[1])
-# print(ans['validation'])
-# print(ans['answer'])
-# print("for more details: ",end="")
-# print(ans['link'])
 print(json.dumps(ans))
