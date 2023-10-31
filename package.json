@@ -4,7 +4,7 @@
     "description": "",
     "main": "main.js",
     "scripts": {
-        "build": "npm i & pip install -r requirements.txt",
+        "build": "npm i & pip install --upgrade pip & pip install pandas & pip install sentence_transformers & pip install transformers & pip install torch",
         "start": "nodemon main.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
