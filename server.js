@@ -18,7 +18,7 @@ app.get("/",(req,res)=>{
 app.post("/summarize", async(req, res) => {
   // console.log(req.body)
   console.log("Saving the data")
-  const py_process = spawner("python3.11", ["store.py", JSON.stringify(req.body)]);
+  const py_process = spawner("python", ["store.py", JSON.stringify(req.body)]);
   py_process.stdout.on("data", (data) => {
     // console.log(data.toString())
     res.send(data.toString());
