@@ -46,6 +46,7 @@ app.post("/data",  async(req, res) => {
     res.send(data.text)
   })
 });
-app.listen(8081, () => {
-    console.log("listerning to 8081");
+const port=process.env.PORT || 8081
+app.listen(port, () => {
+    console.log(`listerning to ${port}`);
 });
