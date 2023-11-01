@@ -11,7 +11,7 @@ app.use(cors({
 }))
 
 app.get("/",(req,res)=>{
-  // console.log("someone is using")
+  console.log("someone is using")
   res.send("Welcome, use the /answer end point with method as post to get the answer<br><br>The input format :<br> {<br>question:string<br>}<br><br>Output format :<br>{<br>validation:true | false | '',<br>answer:justification,<br>link:link_string | ''<br>}")
 })
 
@@ -29,7 +29,7 @@ app.post("/summarize", async(req, res) => {
 app.post("/answer", (req, res) => {
   // console.log(req.body.content[1])
   console.log(req.body)
-  const py_process = spawner("python3", ["Answer.py",req.body.question]);
+  const py_process = spawner("python3.11", ["Answer.py",req.body.question]);
   py_process.stdout.on("data", (data,error) => {
     // console.log(data.toString())
     res.send(data.toString());
