@@ -29,7 +29,7 @@ app.post("/summarize", async(req, res) => {
 app.post("/answer", (req, res) => {
   // console.log(req.body.content[1])
   console.log(req.body)
-  const py_process = spawner("python3.11", ["Answer.py",req.body.question]);
+  const py_process = spawner("python", ["Answer.py",req.body.question]);
   py_process.stdout.on("data", (data,error) => {
     // console.log(data.toString())
     res.send(data.toString());
