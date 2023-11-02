@@ -1,4 +1,9 @@
 try:
+  import pip
+  pip.main(["install", "pandas"])
+  pip.main(["install", "sentence-transformers"])
+  pip.main(["install", "torch"])
+  pip.main(["install", "transformers"])
   from transformers import AutoModelForSequenceClassification, AutoTokenizer
   import torch
   from transformers import pipeline
@@ -8,11 +13,7 @@ try:
   import json
   from transformers import logging
   logging.set_verbosity_error()
-  import pip
-  pip.main(["install", "pandas"])
-  pip.main(["install", "sentence-transformers"])
-  pip.main(["install", "torch"])
-  pip.main(["install", "transformers"])
+
 
   data = read_csv("datas.csv")
   links = data['Links'].tolist()
