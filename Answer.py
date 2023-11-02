@@ -1,4 +1,8 @@
 try:
+  import venv
+  import os
+  venv.create("test")
+  os.system("source test/bin/activate")
   import pip
   pip.main(["install", "pandas"])
   pip.main(["install", "sentence-transformers"])
@@ -8,7 +12,7 @@ try:
   import torch
   from transformers import pipeline
   from pandas import *
-  import sys
+  # import sys
   from sentence_transformers import SentenceTransformer, util
   import json
   from transformers import logging
@@ -81,9 +85,9 @@ try:
 
     return (result['answer'])
 
-  question="did ratan tata announce reward for rashid khan?"
-  ans=findAssociation(question)
-  # ans=findAssociation(sys.argv[1])
+  # question="did ratan tata announce reward for rashid khan?"
+  # ans=findAssociation(question)
+  ans=findAssociation(sys.argv[1])
   print(json.dumps(ans))
 
 except Exception as e:
